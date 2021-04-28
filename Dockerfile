@@ -1,11 +1,11 @@
 # Use the build stage to load up the tar and unpack it
-FROM debian:stable-slim AS builder
+FROM ubuntu:18.04 AS builder
 COPY etlegacy*.tar.gz /legacy/server/
 RUN mkdir /legacy/homepath
 RUN cd /legacy/server && cat *.tar.gz | tar zxvf - -i --strip-components=1 && rm *.tar.gz
 RUN rm /legacy/server/etl && rm /legacy/server/etl_bot.sh && rm /legacy/server/*.so
 
-FROM debian:stable-slim
+FROM ubuntu:18.04
 RUN useradd -Ms /bin/bash legacy
 COPY --from=builder --chown=legacy:legacy /legacy /legacy/
 WORKDIR /legacy/server
