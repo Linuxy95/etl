@@ -18,6 +18,6 @@ VOLUME /legacy/server/etmain
 
 EXPOSE 27960/UDP
 
-USER legacy
+#USER legacy
 
 ENTRYPOINT ["./etlded", "+set","fs_homepath", "/legacy/homepath", "+set", "g_protect", "1", "+exec", "etl_server.cfg"]
